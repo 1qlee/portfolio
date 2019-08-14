@@ -29,14 +29,14 @@ const IndexPage = () => {
     }
   `)
 
-  const storedTheme = localStorage.getItem("isDarkMode");
+  const storedTheme = typeof window !== 'undefined' && window.localStorage.getItem("isDarkMode");
   const [isDarkMode, setIsDarkMode] = useState(
     storedTheme === "true" ? true : false
   );
 
   function setTheme() {
     setIsDarkMode(!isDarkMode)
-    localStorage.setItem("isDarkMode", !isDarkMode)
+    typeof window !== 'undefined' && window.localStorage.setItem("isDarkMode", !isDarkMode)
   }
 
   return (
