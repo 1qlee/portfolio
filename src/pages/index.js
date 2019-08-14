@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { ThemeProvider } from "styled-components"
 
@@ -29,14 +29,19 @@ const IndexPage = () => {
     }
   `)
 
-  const storedTheme = typeof window !== 'undefined' && window.localStorage.getItem("isDarkMode");
+  const storedTheme = typeof window !== 'undefined' && localStorage.getItem('isDarkMode')
   const [isDarkMode, setIsDarkMode] = useState(
     storedTheme === "true" ? true : false
-  );
+  )
+
+  useEffect(() => {
+    console.log(storedTheme, isDarkMode)
+  }, [])
 
   function setTheme() {
     setIsDarkMode(!isDarkMode)
-    typeof window !== 'undefined' && window.localStorage.setItem("isDarkMode", !isDarkMode)
+    localStorage.setItem("isDarkMode", !isDarkMode)
+    console.log(storedTheme, isDarkMode)
   }
 
   return (
