@@ -24,7 +24,7 @@ const Content = styled.div`
   }
   &.is-fixed {
     position: absolute;
-    bottom: 0;
+    top: -3px;
     right: 1rem;
     z-index: 9;
   }

@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: 'Wonkyu Lee',
+    title: '1qlee.com',
     author: 'Wonkyu Lee',
-    description: 'Personal website',
+    description: 'Wonkyu Lee personal website or portfolio.',
     github: 'https://github.com/1qlee',
     linkedin: 'https://www.linkedin.com/in/wonkyulee93/',
     twitter: 'https://twitter.com/wonq33',
@@ -36,13 +36,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
+        name: `wonkyu-personal`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#444`,
+        theme_color: `#444`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/site-icon.png`, // This path is relative to the root of the site.
       },
     },
     {

@@ -35,7 +35,9 @@ const IndexPage = () => {
   )
 
   useEffect(() => {
-    console.log(storedTheme, isDarkMode)
+    console.log(localStorage.getItem('isDarkMode'))
+    console.log(isDarkMode)
+    console.log(storedTheme)
   }, [])
 
   function setTheme() {
@@ -47,42 +49,35 @@ const IndexPage = () => {
   return (
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <Layout>
-        <div>
-          <Content className="is-fixed">
-            <Button as="button" onClick={() => setTheme()}>
-              <Icon>
-                {isDarkMode ? (
-                  <SunIcon />
-                ) : (
-                  <MoonIcon />
-                )}
-              </Icon>
+        <Content className="is-fixed">
+          <Button as="button" onClick={() => setTheme()}>
+            <Icon style={{marginRight: "0"}}>
               {isDarkMode ? (
-                <small>Light light</small>
+                <SunIcon />
               ) : (
-                <small>Night night</small>
+                <MoonIcon />
               )}
-            </Button>
+            </Icon>
+          </Button>
+        </Content>
+        <SEO title="Wonkyu Lee" />
+        <Content className="fade-in-down">
+          <Content>
+            <h1>Wonkyu Lee</h1>
+            <p style={{ color: "#999" }}>[ one-queue, 1-Q, won-kyoo ]</p>
           </Content>
-          <SEO title="Home" />
-          <Content className="fade-in-down">
-            <Content>
-              <h1>Wonkyu Lee</h1>
-              <p style={{ color: "#999" }}>[ one-queue, 1-Q, won-kyoo ]</p>
-            </Content>
-            <p style={{ color: "#999" }}><i>noun</i></p>
-            <p>A web developer from NYC building and designing websites. Spent two years building <Anchor target="_blank" rel="noopner noreferrer" href="https://www.domahub.com" color={lightTheme.colors.green}>DomaHub</Anchor>. Recently built <Anchor target="_blank" rel="noopner noreferrer" href="https://www.unicornline.com" color={lightTheme.colors.pink}>Unicorn Line</Anchor>. Currently working on some other projects.</p>
-          </Content>
-          <Content className="is-flex is-mobile fade-in-up">
-            <Button href={data.site.siteMetadata.email}>
-              <Icon>
-                <AtIcon />
-              </Icon>
-              <small>Email Me</small>
-            </Button>
-            <SocialBar />
-          </Content>
-        </div>
+          <p style={{ color: "#999" }}><i>noun</i></p>
+          <p>A web developer from NYC building and designing websites. Spent two years building <Anchor target="_blank" rel="noopner noreferrer" href="https://www.domahub.com" color={lightTheme.colors.green}>DomaHub</Anchor>. Recently built <Anchor target="_blank" rel="noopner noreferrer" href="https://www.unicornline.com" color={lightTheme.colors.pink}>Unicorn Line</Anchor>. Currently working on some other projects.</p>
+        </Content>
+        <Content className="is-flex is-mobile fade-in-up">
+          <Button href={data.site.siteMetadata.email}>
+            <Icon>
+              <AtIcon />
+            </Icon>
+            <small>Email Me</small>
+          </Button>
+          <SocialBar />
+        </Content>
       </Layout>
     </ThemeProvider>
   )
