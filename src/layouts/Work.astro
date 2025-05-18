@@ -1,0 +1,173 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.tsx";
+import { STYLE_CONTAINER } from "../data/data_styles";
+import WorkLink from "../components/WorkLink.tsx";
+import Background from "../components/Background.tsx";
+import WorkImg from "../components/WorkImg.tsx";
+
+type Props = CollectionEntry<"work">["data"];
+const allWorkEntries = await getCollection("work");
+const data = Astro.props;
+const {
+  title,
+  description,
+  color,
+  year,
+  client,
+  role,
+  tags,
+  index,
+  link,
+  src,
+  srcSet,
+} = data;
+const prevWorkEntry = allWorkEntries.find(
+  (work) => work.data.index === index - 1,
+);
+const nextWorkEntry = allWorkEntries.find(
+  (work) => work.data.index === index + 1,
+);
+const boxClass = "border p-2 border-b-[0px]";
+const pTextClass = "text-clamp-sm col-span-4";
+const h3TextClass = "uppercase text-xs font-bold mb-1";
+const anim = {
+  old: {
+    name: "slideOut",
+    duration: "0.25s",
+    easing: "ease-in-out",
+    direction: "reverse",
+  },
+  new: {
+    name: "slideIn",
+    duration: "0.25s",
+    delay: "0.5s",
+    easing: "ease-in-out",
+  },
+};
+const slideDown = {
+  old: {
+    name: "slideDown",
+    duration: "0.25s",
+    easing: "ease-in-out",
+    direction: "reverse",
+  },
+  new: {
+    name: "slideDown",
+    duration: "0.25s",
+    delay: "0.5s",
+    easing: "ease-in-out",
+  },
+};
+
+const customTransition = {
+  forwards: anim,
+  backwards: anim,
+};
+const slideDownAnim = {
+  forwards: slideDown,
+  backwards: slideDown,
+};
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+
+  <body>
+    <Header transition:persist transition:name="header" client:load />
+    <Background color={color} transition:persist client:load />
+    <main class="w-fit pt-8">
+      <div class={STYLE_CONTAINER}>
+        <div class="relative h-min-screen gap-y-4 pb-2">
+          <div class="flex justify-between items-center mb-8 gap-4">
+            <div class="grow overflow-y-hidden">
+              <h1
+                class="w-full block text-clamp-lg overflow-y-hidden"
+                transition:animate={customTransition}
+              >
+                {title}
+              </h1>
+            </div>
+            <div class="flex gap-2">
+              {
+                prevWorkEntry && (
+                  <WorkLink direction="prev" slug={prevWorkEntry.data.slug} />
+                )
+              }
+              {
+                nextWorkEntry && (
+                  <WorkLink direction="next" slug={nextWorkEntry.data.slug} />
+                )
+              }
+            </div>
+          </div>
+          <div class="grid grid-cols-12 gap-8">
+            <div
+              class="col-span-full md:col-span-4"
+              transition:animate={slideDownAnim}
+            >
+              <div class={boxClass}>
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block whitespace-nowrap py-2 px-4 border rounded-full text-center text-clamp-sm"
+                >
+                  Visit Website
+                </a>
+              </div>
+              <div class={boxClass}>
+                <h3 class={h3TextClass}>Year</h3>
+                <p class={pTextClass}>{year}</p>
+              </div>
+              {
+                client && (
+                  <div class={boxClass}>
+                    <h3 class={h3TextClass}>Client</h3>
+                    <p class={pTextClass}>{client}</p>
+                  </div>
+                )
+              }
+              <div class={boxClass}>
+                <h3 class={h3TextClass}>Role</h3>
+                <p class={pTextClass}>{role}</p>
+              </div>
+              <div class={boxClass}>
+                <h3 class={h3TextClass}>Services</h3>
+                {
+                  tags.map((tag, index) => (
+                    <span class={pTextClass}>
+                      {tag + (index + 1 !== tags.length ? ", " : "")}
+                    </span>
+                  ))
+                }
+              </div>
+              <div class="border p-2">
+                <h3 class={h3TextClass}>Description</h3>
+                <slot />
+              </div>
+            </div>
+            <div class="col-span-full md:col-span-8">
+              <div
+                class="border overflow-y-hidden"
+                transition:animate={customTransition}
+              >
+                <WorkImg
+                  client:load
+                  data={{
+                    src,
+                    srcSet,
+                    alt: description,
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
