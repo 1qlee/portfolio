@@ -1,7 +1,6 @@
 import Avatar from "./Avatar.tsx";
 import { STYLE_CONTAINER } from "../data/data_styles.ts";
 import { motion } from "motion/react";
-import { fadeIn } from "../data/data_motion.ts";
 
 export default function Header() {
   return (

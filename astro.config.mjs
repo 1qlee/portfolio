@@ -18,10 +18,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss(), svgr()],
   },
-
-  experimental: {
-    svg: true,
-  },
-
   adapter: netlify(),
 });
