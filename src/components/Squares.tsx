@@ -4,7 +4,6 @@ import Heading from "./Heading";
 import { fadeIn } from "../data/data_motion";
 import { useState } from "react";
 import clsx from "clsx";
-import { Suspense } from "react";
 
 export default function Squares() {
   const [mousedOverIndex, setMousedOverIndex] = useState<number | null>(null);

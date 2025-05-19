@@ -1,4 +1,3 @@
-import Header from "./Header";
 import Squares from "./Squares";
 import Cards from "./Cards";
 import Name from "./Name";
