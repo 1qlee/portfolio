@@ -1,37 +1,37 @@
-import domahubImage from "../../public/images/domahub.webp";
-import domahubImage320 from "../../public/images/domahub-320.webp";
-import domahubImage640 from "../../public/images/domahub-640.webp";
-import domahubImage1024 from "../../public/images/domahub-1024.webp";
+import domahubImage from "../images/domahub.webp";
+import domahubImage320 from "../images/domahub-320.webp";
+import domahubImage640 from "../images/domahub-640.webp";
+import domahubImage1024 from "../images/domahub-1024.webp";
 
-import notesmithImage from "../../public/images/notesmith.webp";
-import notesmithImage320 from "../../public/images/notesmith-320.webp";
-import notesmithImage640 from "../../public/images/notesmith-640.webp";
-import notesmithImage1024 from "../../public/images/notesmith-1024.webp";
+import notesmithImage from "../images/notesmith.webp";
+import notesmithImage320 from "../images/notesmith-320.webp";
+import notesmithImage640 from "../images/notesmith-640.webp";
+import notesmithImage1024 from "../images/notesmith-1024.webp";
 
-import officehoursImage from "../../public/images/officehours.webp";
-import officehoursImage320 from "../../public/images/officehours-320.webp";
-import officehoursImage640 from "../../public/images/officehours-640.webp";
-import officehoursImage1024 from "../../public/images/officehours-1024.webp";
+import officehoursImage from "../images/officehours.webp";
+import officehoursImage320 from "../images/officehours-320.webp";
+import officehoursImage640 from "../images/officehours-640.webp";
+import officehoursImage1024 from "../images/officehours-1024.webp";
 
-import sqncesImage from "../../public/images/sqnces.webp";
-import sqncesImage320 from "../../public/images/sqnces-320.webp";
-import sqncesImage640 from "../../public/images/sqnces-640.webp";
-import sqncesImage1024 from "../../public/images/sqnces-1024.webp";
+import sqncesImage from "../images/sqnces.webp";
+import sqncesImage320 from "../images/sqnces-320.webp";
+import sqncesImage640 from "../images/sqnces-640.webp";
+import sqncesImage1024 from "../images/sqnces-1024.webp";
 
-import unicorngraphicsImage from "../../public/images/unicorngraphics.webp";
-import unicorngraphicsImage320 from "../../public/images/unicorngraphics-320.webp";
-import unicorngraphicsImage640 from "../../public/images/unicorngraphics-640.webp";
-import unicorngraphicsImage1024 from "../../public/images/unicorngraphics-1024.webp";
+import unicorngraphicsImage from "../images/unicorngraphics.webp";
+import unicorngraphicsImage320 from "../images/unicorngraphics-320.webp";
+import unicorngraphicsImage640 from "../images/unicorngraphics-640.webp";
+import unicorngraphicsImage1024 from "../images/unicorngraphics-1024.webp";
 
-import unicornlineImage from "../../public/images/unicornline.webp";
-import unicornlineImage320 from "../../public/images/unicornline-320.webp";
-import unicornlineImage640 from "../../public/images/unicornline-640.webp";
-import unicornlineImage1024 from "../../public/images/unicornline-1024.webp";
+import unicornlineImage from "../images/unicornline.webp";
+import unicornlineImage320 from "../images/unicornline-320.webp";
+import unicornlineImage640 from "../images/unicornline-640.webp";
+import unicornlineImage1024 from "../images/unicornline-1024.webp";
 
-import spatialprintsImage from "../../public/images/spatialprints.webp";
-import spatialprintsImage320 from "../../public/images/spatialprints-320.webp";
-import spatialprintsImage640 from "../../public/images/spatialprints-640.webp";
-import spatialprintsImage1024 from "../../public/images/spatialprints-1024.webp";
+import spatialprintsImage from "../images/spatialprints.webp";
+import spatialprintsImage320 from "../images/spatialprints-320.webp";
+import spatialprintsImage640 from "../images/spatialprints-640.webp";
+import spatialprintsImage1024 from "../images/spatialprints-1024.webp";
 
 export const CARDS_DATA = [
   {

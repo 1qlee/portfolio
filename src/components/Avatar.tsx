@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import avatarImage from "../../public/images/avatar.webp";
+import avatarImage from "../images/avatar.webp";
 
 const drawerAnimation = {
   borderColor: "rgba(0,0,255)",

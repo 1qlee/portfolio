@@ -1,20 +1,26 @@
 ---
+import { getCollection, getEntry, type CollectionEntry } from "astro:content";
 import { render } from "astro:content";
-import { getCollection } from "astro:content";
 import Work from "../../layouts/Work.astro";
 
 export async function getStaticPaths() {
-  const works = await getCollection("work");
-  return works.map((work) => ({
-    params: { slug: work.data.slug },
-    props: work,
+  const workEntries = await getCollection("work");
+  return workEntries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry }, // Pass the entire CollectionEntry object
   }));
 }
 
-const work = Astro.props;
-const { Content } = await render(work);
+const { entry } = Astro.props as { entry: CollectionEntry<"work"> }; // Type assertion for clarity
+
+if (!entry) {
+  // Handle 404 appropriately
+  return Astro.redirect("/404");
+}
+
+const { Content } = await render(entry);
 ---
 
-<Work {...work.data}>
+<Work workEntry={entry}>
   <Content />
 </Work>

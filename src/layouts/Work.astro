@@ -1,15 +1,20 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
+import { getImage } from "astro:assets";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.tsx";
 import { STYLE_CONTAINER } from "../data/data_styles";
 import WorkLink from "../components/WorkLink.tsx";
 import Background from "../components/Background.tsx";
 import WorkImg from "../components/WorkImg.tsx";
+// Define the type for the props expected by this component
+interface Props {
+  workEntry: CollectionEntry<"work">;
+}
 
-type Props = CollectionEntry<"work">["data"];
-const allWorkEntries = await getCollection("work");
-const data = Astro.props;
+const { workEntry } = Astro.props;
+
+// Destructure the data, ensuring 'src' is the ImageMetadata object
 const {
   title,
   description,
@@ -20,9 +25,11 @@ const {
   tags,
   index,
   link,
-  src,
-  srcSet,
-} = data;
+  src, // This `src` MUST be the ImageMetadata object.
+} = workEntry.data;
+
+// --- Your existing variables from the page component ---
+const allWorkEntries = await getCollection("work"); // Assuming you still need this here
 const prevWorkEntry = allWorkEntries.find(
   (work) => work.data.index === index - 1,
 );
@@ -69,6 +76,40 @@ const slideDownAnim = {
   forwards: slideDown,
   backwards: slideDown,
 };
+// --- End of your existing variables ---
+
+// --- IMAGE OPTIMIZATION LOGIC ---
+// Define the widths you want for your srcset
+const imageWidths = [320, 640, 1024, 1440, 1920]; // Example widths
+
+// Log the type of `src` to confirm it's an object (ImageMetadata)
+console.log("Type of workEntry.data.src:", typeof src);
+console.log("workEntry.data.src object:", src); // Inspect its content
+
+// Generate optimized images for each width
+const optimizedImages = await Promise.all(
+  imageWidths.map(async (width) => {
+    return await getImage({
+      src: src, // <--- This 'src' MUST be the ImageMetadata object from `workEntry.data.src`
+      width: width,
+      formats: ["webp", "jpeg"], // Consider what formats you want
+      quality: 80, // Adjust quality as needed
+    });
+  }),
+);
+
+// Construct the srcset string
+const generatedSrcSet = optimizedImages
+  .map((img) => `${img.src} ${img.attributes.width}w`)
+  .join(", ");
+
+// Get the default/largest image src for the 'src' prop
+const mainImage = optimizedImages[optimizedImages.length - 1]; // Use the largest generated image
+const mainImageSrc = mainImage.src;
+const mainImageWidth = mainImage.attributes.width; // Access width from .attributes
+const mainImageHeight = mainImage.attributes.height; // Access height from .attributes
+
+// --- END IMAGE OPTIMIZATION LOGIC ---
 ---
 
 <html lang="en">
@@ -158,8 +199,8 @@ const slideDownAnim = {
                 <WorkImg
                   client:load
                   data={{
-                    src,
-                    srcSet,
+                    src: mainImageSrc,
+                    srcSet: generatedSrcSet,
                     alt: description,
                   }}
                 />

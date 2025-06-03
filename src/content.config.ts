@@ -17,13 +17,13 @@ const blog = defineCollection({
 
 const work = defineCollection({
   loader: glob({ base: './src/content/work', pattern: '**/*.{md,mdx}' }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string(),
     year: z.string(),
     client: z.string(),
-    src: z.string(),
-    srcSet: z.string(),
+    src: image(),
+    srcSet: z.string().optional(),
     tags: z.string().array(),
     role: z.string(),
     link: z.string(),
