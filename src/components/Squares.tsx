@@ -18,7 +18,7 @@ export default function Squares() {
   };
 
   return (
-    <div 
+    <div
       className="flex gap-4 mt-auto justify-between w-full xs:flex-col sm:flex-row"
       onMouseLeave={handleMouseLeave}
     >
@@ -34,7 +34,7 @@ export default function Squares() {
       </div>
       <div className="flex flex-col">
         <div className="overflow-hidden">
-          <EmailLink 
+          <EmailLink
             onMouseOver={() => handleMouseOver(0)}
             className={clsx(
               linkClasses,
@@ -46,7 +46,7 @@ export default function Squares() {
           <motion.a
             className={linkClasses}
             data-cursor="true"
-            href="/WonkyuLee_Resume_2025.pdf"
+            href="/WonkyuLee_Resume_2026.pdf"
             target="_blank"
             rel="noopener noreferrer"
             onMouseOver={() => handleMouseOver(1)}
